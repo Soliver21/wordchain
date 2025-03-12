@@ -1,0 +1,73 @@
+
+export class View {
+    constructor() {
+        this.startButton = document.querySelector('.start');
+        this.wordCountSpan = document.getElementById('word-count');
+        this.form = document.querySelector('form');
+        this.inputContainer = null;
+    }
+
+    renderInputs() {
+        this.inputContainer = document.createElement('div');
+        this.inputContainer.classList.add('input-elements');
+        const startWordInput = document.createElement('input');
+        startWordInput.type = 'text';
+        startWordInput.id = 'start-word';
+        startWordInput.disabled = true;
+        const intermediateWordInput = document.createElement('input');
+        intermediateWordInput.type = 'text';
+        intermediateWordInput.id = 'intermediate-word';
+        intermediateWordInput.maxLength = 3;
+        const endWordInput = document.createElement('input');
+        endWordInput.type = 'text';
+        endWordInput.id = 'end-word';
+        endWordInput.disabled = true;
+        this.inputContainer.appendChild(startWordInput);
+        this.inputContainer.appendChild(intermediateWordInput);
+        this.inputContainer.appendChild(endWordInput);
+        this.form.insertBefore(this.inputContainer, this.wordCountSpan);
+        intermediateWordInput.focus();
+    }
+
+    updateWordCount(count) {
+        this.wordCountSpan.textContent = count;
+    }
+
+    updateStartWord(word) {
+        const startWordInput = document.getElementById('start-word');
+        startWordInput.value = word;
+    }
+
+    updateEndWord(word) {
+        const endWordInput = document.getElementById('end-word');
+        endWordInput.value = word;
+    }
+
+    clearIntermediateInput() {
+        const intermediateWordInput = document.getElementById('intermediate-word');
+        intermediateWordInput.value = '';
+    }
+
+    disableIntermediateInput() {
+        const intermediateWordInput = document.getElementById('intermediate-word');
+        intermediateWordInput.disabled = true;
+    }
+
+    enableStartButton() {
+        this.startButton.disabled = false;
+    }
+
+    disableStartButton() {
+        this.startButton.disabled = true;
+    }
+
+    showAlert(message) {
+        alert(message);
+    }
+
+    removeInputs() {
+        if (this.inputContainer) {
+            this.inputContainer.remove();
+        }
+    }
+}
