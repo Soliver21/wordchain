@@ -18,14 +18,16 @@ function startGame(startButton, form, wordCountSpan) {
     (0, view_js_1.updateWordField)("start-word", startWord);
     (0, view_js_1.updateWordField)("end-word", endWord);
     (0, view_js_1.setInputDisabled)("start", true);
-    document.getElementById("intermediate-word").addEventListener("keypress", (e) => handleInput(e, startButton, wordCountSpan));
+    const intermediateInput = document.getElementById("intermediate-word");
+    intermediateInput.removeEventListener("keypress", handleInput);
+    intermediateInput.addEventListener("keypress", (e) => handleInput(e, startButton, wordCountSpan));
 }
 function handleInput(event, startButton, wordCountSpan) {
     if (event.key === "Enter") {
         const target = event.target;
         const word = target.value.trim();
-        if (!word || word.includes(" ")) {
-            (0, view_js_1.showAlert)("Érvénytelen szó!");
+        if (!word || word.includes(" ") || word.length !== 3 || !word.includes(word)) {
+            (0, view_js_1.showAlert)("Érvénytelen szó! Csak a megadott listából választhatsz 3 betűs szót.");
             (0, view_js_1.clearIntermediateInput)();
             return;
         }
@@ -37,6 +39,7 @@ function handleInput(event, startButton, wordCountSpan) {
         if ((0, model_js_1.isGameOver)()) {
             (0, view_js_1.setInputDisabled)("intermediate-word", true);
             (0, view_js_1.setInputDisabled)("start", false);
+            (0, view_js_1.showAlert)("Gratulálok, elértél a célszóhoz!");
         }
     }
 }

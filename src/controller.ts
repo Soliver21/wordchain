@@ -19,19 +19,19 @@ function startGame(startButton: HTMLButtonElement, form: HTMLFormElement, wordCo
     setStartWord(startWord);
     setEndWord(endWord);
     updateWordField("start-word", startWord);
-    updateWordField("end-word", endWord);
-   
+    updateWordField("end-word", endWord); 
     setInputDisabled("start", true);
-   
-    (document.getElementById("intermediate-word") as HTMLInputElement).addEventListener("keypress", (e) => handleInput(e, startButton, wordCountSpan));
+    const intermediateInput = document.getElementById("intermediate-word") as HTMLInputElement;
+    intermediateInput.removeEventListener("keypress", handleInput as EventListener); 
+    intermediateInput.addEventListener("keypress", (e) => handleInput(e, startButton, wordCountSpan));
 }
 
 function handleInput(event: KeyboardEvent, startButton: HTMLButtonElement, wordCountSpan: HTMLElement): void {
     if (event.key === "Enter") {
         const target = event.target as HTMLInputElement;
         const word = target.value.trim();
-        if (!word || word.includes(" ")) {
-            showAlert("Érvénytelen szó!");
+        if (!word || word.includes(" ") || word.length !== 3 || !word.includes(word)) { 
+            showAlert("Érvénytelen szó! Csak a megadott listából választhatsz 3 betűs szót.");
             clearIntermediateInput();
             return;
         }
@@ -45,6 +45,7 @@ function handleInput(event: KeyboardEvent, startButton: HTMLButtonElement, wordC
         if (isGameOver()) {
             setInputDisabled("intermediate-word", true);
             setInputDisabled("start", false);
+            showAlert("Gratulálok, elértél a célszóhoz!");
         }
     }
 }
