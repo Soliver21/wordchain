@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const model_js_1 = require("./model.js");
 const view_js_1 = require("./view.js");
 document.addEventListener("DOMContentLoaded", () => {
-    const startButton = document.querySelector(".start");
-    const wordCountSpan = document.getElementById("word-count");
-    const form = document.querySelector("form");
+    const startButton = document.querySelector('.start');
+    const wordCountSpan = document.getElementById('word-count');
+    const form = document.querySelector('form');
     startButton.addEventListener("click", () => startGame(startButton, form, wordCountSpan));
 });
 function startGame(startButton, form, wordCountSpan) {
