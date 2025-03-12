@@ -2,9 +2,9 @@ import { addInputValue, getRandomWord, isGameOver, setEndWord, setStartWord, get
 import { clearIntermediateInput, setInputDisabled, removeInputs, renderInputs, showAlert, updateWordCount, updateWordField } from "./view.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const startButton = document.querySelector(".start") as HTMLButtonElement;
-    const wordCountSpan = document.getElementById("word-count") as HTMLElement;
-    const form = document.querySelector("form") as HTMLFormElement;
+    const startButton = document.querySelector('.start') as HTMLButtonElement;
+    const wordCountSpan = document.getElementById('word-count') as HTMLElement;
+    const form = document.querySelector('form') as HTMLFormElement;
 
     startButton.addEventListener("click", () => startGame(startButton, form, wordCountSpan));
 });
@@ -12,17 +12,17 @@ document.addEventListener("DOMContentLoaded", () => {
 function startGame(startButton: HTMLButtonElement, form: HTMLFormElement, wordCountSpan: HTMLElement): void {
     removeInputs();
     renderInputs(form, wordCountSpan);
-    
+   
     const startWord = getRandomWord();
     const endWord = getRandomWord();
-    
+   
     setStartWord(startWord);
     setEndWord(endWord);
     updateWordField("start-word", startWord);
     updateWordField("end-word", endWord);
-    
+   
     setInputDisabled("start", true);
-    
+   
     (document.getElementById("intermediate-word") as HTMLInputElement).addEventListener("keypress", (e) => handleInput(e, startButton, wordCountSpan));
 }
 

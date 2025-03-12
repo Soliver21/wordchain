@@ -1,20 +1,20 @@
 export function renderInputs(form: HTMLFormElement, wordCountSpan: HTMLElement): void {
-    const inputContainer = document.createElement("div");
-    inputContainer.classList.add("input-elements");
+    const inputContainer = document.createElement('div');
+    inputContainer.classList.add('input-elements');
 
-    const startWordInput = document.createElement("input");
-    startWordInput.type = "text";
-    startWordInput.id = "start-word";
+    const startWordInput = document.createElement('input');
+    startWordInput.type = 'text';
+    startWordInput.id = 'start-word';
     startWordInput.disabled = true;
 
-    const intermediateWordInput = document.createElement("input");
-    intermediateWordInput.type = "text";
-    intermediateWordInput.id = "intermediate-word";
+    const intermediateWordInput = document.createElement('input');
+    intermediateWordInput.type = 'text';
+    intermediateWordInput.id = 'intermediate-word';
     intermediateWordInput.maxLength = 3;
 
-    const endWordInput = document.createElement("input");
-    endWordInput.type = "text";
-    endWordInput.id = "end-word";
+    const endWordInput = document.createElement('input');
+    endWordInput.type = 'text';
+    endWordInput.id = 'end-word';
     endWordInput.disabled = true;
 
     inputContainer.append(startWordInput, intermediateWordInput, endWordInput);
@@ -32,7 +32,7 @@ export function updateWordField(fieldId: string, word: string): void {
 }
 
 export function clearIntermediateInput(): void {
-    (document.getElementById("intermediate-word") as HTMLInputElement).value = "";
+    (document.getElementById('intermediate-word') as HTMLInputElement).value = '';
 }
 
 export function setInputDisabled(inputId: string, disabled: boolean): void {
@@ -44,6 +44,6 @@ export function showAlert(message: string): void {
 }
 
 export function removeInputs(): void {
-    const inputContainer = document.querySelector(".input-elements");
+    const inputContainer = document.querySelector('.input-elements');
     if (inputContainer) inputContainer.remove();
 }
