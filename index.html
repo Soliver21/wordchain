@@ -3,12 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wordchain</title>
+    <title>Word chaining</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./img/favicon.jpeg" type="image/x-icon">
+    <script type="module" src="./dist/main.js" defer></script>
 </head>
 <body>
     <main>
-        <div class="container">
-            <div class="gameBoard"></div>
+        <div class="wrapper">
+            <h2>Jusson el a kezdeti szótól a cél szóig, mingid csak egy betű változtatásával!</h2>
+            <form>
+                <!-- <div class="input-elements">
+                    <input type="text" name="" id="start-word" disabled>
+                    <input type="text" name="" id="intermediate-word" maxlength="3">
+                    <input type="text" name="" id="end-word" disabled>
+                </div> -->
+                <h3>Felhasznált szavak száma: <span id="word-count"></span></h3>
+                <button class="start" type="button">Kezdés</button>
+            </form>
+
         </div>
     </main>
 </body>
