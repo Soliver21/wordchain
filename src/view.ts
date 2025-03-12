@@ -1,73 +1,49 @@
+export function renderInputs(form: HTMLFormElement, wordCountSpan: HTMLElement): void {
+    const inputContainer = document.createElement("div");
+    inputContainer.classList.add("input-elements");
 
-export class View {
-    constructor() {
-        this.startButton = document.querySelector('.start');
-        this.wordCountSpan = document.getElementById('word-count');
-        this.form = document.querySelector('form');
-        this.inputContainer = null;
-    }
+    const startWordInput = document.createElement("input");
+    startWordInput.type = "text";
+    startWordInput.id = "start-word";
+    startWordInput.disabled = true;
 
-    renderInputs() {
-        this.inputContainer = document.createElement('div');
-        this.inputContainer.classList.add('input-elements');
-        const startWordInput = document.createElement('input');
-        startWordInput.type = 'text';
-        startWordInput.id = 'start-word';
-        startWordInput.disabled = true;
-        const intermediateWordInput = document.createElement('input');
-        intermediateWordInput.type = 'text';
-        intermediateWordInput.id = 'intermediate-word';
-        intermediateWordInput.maxLength = 3;
-        const endWordInput = document.createElement('input');
-        endWordInput.type = 'text';
-        endWordInput.id = 'end-word';
-        endWordInput.disabled = true;
-        this.inputContainer.appendChild(startWordInput);
-        this.inputContainer.appendChild(intermediateWordInput);
-        this.inputContainer.appendChild(endWordInput);
-        this.form.insertBefore(this.inputContainer, this.wordCountSpan);
-        intermediateWordInput.focus();
-    }
+    const intermediateWordInput = document.createElement("input");
+    intermediateWordInput.type = "text";
+    intermediateWordInput.id = "intermediate-word";
+    intermediateWordInput.maxLength = 3;
 
-    updateWordCount(count) {
-        this.wordCountSpan.textContent = count;
-    }
+    const endWordInput = document.createElement("input");
+    endWordInput.type = "text";
+    endWordInput.id = "end-word";
+    endWordInput.disabled = true;
 
-    updateStartWord(word) {
-        const startWordInput = document.getElementById('start-word');
-        startWordInput.value = word;
-    }
+    inputContainer.append(startWordInput, intermediateWordInput, endWordInput);
+    form.insertBefore(inputContainer, wordCountSpan);
+    intermediateWordInput.focus();
+}
 
-    updateEndWord(word) {
-        const endWordInput = document.getElementById('end-word');
-        endWordInput.value = word;
-    }
+export function updateWordCount(count: number, wordCountSpan: HTMLElement): void {
+    wordCountSpan.textContent = count.toString();
+}
 
-    clearIntermediateInput() {
-        const intermediateWordInput = document.getElementById('intermediate-word');
-        intermediateWordInput.value = '';
-    }
+export function updateWordField(fieldId: string, word: string): void {
+    const field = document.getElementById(fieldId) as HTMLInputElement;
+    if (field) field.value = word;
+}
 
-    disableIntermediateInput() {
-        const intermediateWordInput = document.getElementById('intermediate-word');
-        intermediateWordInput.disabled = true;
-    }
+export function clearIntermediateInput(): void {
+    (document.getElementById("intermediate-word") as HTMLInputElement).value = "";
+}
 
-    enableStartButton() {
-        this.startButton.disabled = false;
-    }
+export function setInputDisabled(inputId: string, disabled: boolean): void {
+    (document.getElementById(inputId) as HTMLInputElement).disabled = disabled;
+}
 
-    disableStartButton() {
-        this.startButton.disabled = true;
-    }
+export function showAlert(message: string): void {
+    alert(message);
+}
 
-    showAlert(message) {
-        alert(message);
-    }
-
-    removeInputs() {
-        if (this.inputContainer) {
-            this.inputContainer.remove();
-        }
-    }
+export function removeInputs(): void {
+    const inputContainer = document.querySelector(".input-elements");
+    if (inputContainer) inputContainer.remove();
 }

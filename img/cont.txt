@@ -1,0 +1,43 @@
+export class Controller {
+    constructor(model, view) {
+        this.model = model;
+        this.view = view;
+        this.view.startButton.addEventListener('click', () => this.startGame());
+    }
+
+    startGame() {
+        this.view.removeInputs();
+        this.view.renderInputs();
+        const startWord = this.model.getRandomWord();
+        const endWord = this.model.getRandomWord();
+        this.model.setStartWord(startWord);
+        this.model.setEndWord(endWord);
+        this.view.updateStartWord(startWord);
+        this.view.updateEndWord(endWord);
+        this.view.disableStartButton();
+        const intermediateWordInput = document.getElementById('intermediate-word');
+        intermediateWordInput.addEventListener('keypress', (e) => this.handleInput(e));
+    }
+
+    handleInput(event) {
+        if (event.key === 'Enter') {
+            const word = event.target.value.trim();
+            if (word === '' || word.includes(' ')) {
+                this.view.showAlert('Érvénytelen szó!');
+                this.view.clearIntermediateInput();
+                return;
+            }
+
+            this.model.addInputValue(word);
+            this.view.updateWordCount(this.model.inputValues.length);
+            this.model.setStartWord(word);
+            this.view.updateStartWord(word);
+            this.view.clearIntermediateInput();
+
+            if (this.model.isGameOver()) {
+                this.view.disableIntermediateInput();
+                this.view.enableStartButton();
+            }
+        }
+    }
+}
