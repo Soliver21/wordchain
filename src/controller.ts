@@ -12,17 +12,17 @@ document.addEventListener("DOMContentLoaded", () => {
 function startGame(startButton: HTMLButtonElement, form: HTMLFormElement, wordCountSpan: HTMLElement): void {
     removeInputs();
     renderInputs(form, wordCountSpan);
-    
+   
     const startWord = getRandomWord();
     const endWord = getRandomWord();
-    
+   
     setStartWord(startWord);
     setEndWord(endWord);
     updateWordField("start-word", startWord);
     updateWordField("end-word", endWord);
-    
+   
     setInputDisabled("start", true);
-    
+   
     (document.getElementById("intermediate-word") as HTMLInputElement).addEventListener("keypress", (e) => handleInput(e, startButton, wordCountSpan));
 }
 
